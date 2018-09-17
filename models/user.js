@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 
 // Create the user Schema 
 const userSchema = new mongoose.Schema({
-	name: String, 
-	image: String,  
-	birthyear: Number, 
+	firstname: String, 
+	lastname: String,  
+	email: String, 
+	image: String, 
 	admin: Boolean
 });
 

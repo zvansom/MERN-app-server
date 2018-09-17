@@ -26,7 +26,7 @@ router.get('/createuser', (req, res) => {
 	})
 	.catch(err => {
 		console.log(err);
-		res.send('error, check yo logs');
+		res.send('error, check logs');
 	})
 });
 
