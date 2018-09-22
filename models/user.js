@@ -11,26 +11,26 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-    maxlength: 99
+    maxlength: 99,
   },
   lastname: {
     type: String,
     required: true,
     minlength: 1,
-    maxlength: 99
+    maxlength: 99,
   },
-  email: { // TODO: Need to add email validation
+  email: {
     type: String,
     required: true,
     unique: true,
     minlength: 5,
-    maxlength: 99
+    maxlength: 99,
   },
   password: {
     type: String,
     required: true,
     minlength: 6,
-    maxlength: 99
+    maxlength: 99,
   },
   profileImg: {
     type: String,
@@ -43,22 +43,22 @@ const userSchema = new mongoose.Schema({
 
 // Override 'toJSON' to prevent the password from being returned with the user
 userSchema.set('toJSON', {
-  transform: function(doc, user, options) {
+  transform(doc, user) {
     const returnJson = {
       id: user._id,
       email: user.email,
       firstname: user.firstname,
       workingCapital: user.workingCapital,
-      portfolio: user.portfolio,     
+      portfolio: user.portfolio,
     };
     return returnJson;
-  }
+  },
 });
 
 // Returns true if password hashes match, otherwise false.
 userSchema.methods.authenticated = function(password) {
   return bcrypt.compareSync(password, this.password);
-}
+};
 
 // Mongoose's version of a beforeCreate hook
 userSchema.pre('save', function(next) {
